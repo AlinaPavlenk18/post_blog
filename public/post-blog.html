@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Post Blog</title>
+    <link rel="stylesheet" href="/post-blog.css">
+</head>
+<body>
+  <header>
+    <h1>POST BLOG</h1>
+  </header>
+  <main>
+    <section class="form-card card">
+      <h2 id="form-title">Create post</h2>
+      <form id="post-form">
+        <input type="hidden" id="post-id" value="">
+        <label>Title
+          <input id="title" required placeholder="Post title" />
+        </label>
+        <label>Author
+          <input id="author" required placeholder="Your name" />
+        </label>
+        <label>Description
+          <textarea id="description" required placeholder="Describe your idea..."></textarea>
+        </label>
+        <div class="buttons form-actions">
+          <button type="submit" id="save-btn" class="btn primary">Save</button>
+          <button type="button" id="cancel-btn" class="btn secondary" style="display:none">Cancel</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="list-card card">
+      <h2>All posts</h2>
+      <div id="posts" class="posts-container"></div>
+    </section>
+  </main>
+
+    <script src="/app.js"></script>
+</body>
+</html>
