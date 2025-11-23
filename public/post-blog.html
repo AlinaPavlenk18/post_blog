@@ -31,11 +31,24 @@
       </form>
     </section>
 
-    <section class="list-card card">
-      <h2>All posts</h2>
-      <div id="posts" class="posts-container"></div>
-    </section>
+   <section class="list-card card">
+    <h2>All posts</h2>
+    <div id="posts" class="posts-container"></div>
+        <div class="modal-btn-container">
+            <button id="open-modal-btn" class="btn primary" style="display:none;">
+                Show all posts
+            </button>
+        </div>
+    </section>
   </main>
+
+  <div id="posts-modal" class="modal">
+    <div class="modal-content">
+      <span id="close-modal" class="close">&times;</span>
+      <h2>All posts</h2>
+      <div id="modal-posts" class="posts-container"></div>
+    </div>
+  </div>
 
     <script src="/app.js"></script>
 </body>
