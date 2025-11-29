@@ -24,14 +24,20 @@
         <label>Description
           <textarea id="description" required placeholder="Describe your idea..."></textarea>
         </label>
-        <div class="buttons form-actions">
+        <label class="file-label">
+          Image
+          <input type="file" id="image" accept="image/*" />
+          <span class="file-btn">Choose file</span>
+        </label>  
+        <img id="image-preview" src="" alt="Preview" style="display:none; max-width:200px; max-height:200px; margin-top:10px; border-radius:8px;">   
+       <div class="buttons form-actions">
           <button type="submit" id="save-btn" class="btn primary">Save</button>
           <button type="button" id="cancel-btn" class="btn secondary" style="display:none">Cancel</button>
         </div>
       </form>
     </section>
 
-   <section class="list-card card">
+    <section class="list-card card">
     <h2>All posts</h2>
     <div id="posts" class="posts-container"></div>
         <div class="modal-btn-container">

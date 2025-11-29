@@ -44,7 +44,6 @@ main {
 .form-card { flex-basis: 400px; }
 .list-card { flex: 2; }
 
-/* === Форма === */
 h2 { color: #6c5ce7; border-bottom: 2px solid #e0e7ff; padding-bottom: 10px; margin-top: 0; }
 label { 
     display: block; 
@@ -116,16 +115,72 @@ textarea {
 }
 
 .post { 
+    display: flex;
+    gap: 20px;
     background: #f9fafb;
     padding: 20px; 
     border-radius: 8px; 
     border-left: 5px solid #6c5ce7;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
     transition: box-shadow 0.3s ease;
+    align-items: flex-start;
 }
 .post:hover {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
+.post-image {
+    max-width: 150px;
+    max-height: 150px;
+    object-fit: cover;
+    border-radius: 8px;
+    order: 2;
+}
+
+
+.post-content {
+    flex: 1;
+    order: 1; 
+}
+
+.file-label {
+    display: flex;
+    flex-direction: column; 
+    align-items: flex-start; 
+    font-weight: 600;
+    color: #4b5563;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.file-label input[type="file"] {
+    position: absolute;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+.file-btn {
+    margin-top: 5px; 
+    padding: 10px 20px;
+    background: #6c5ce7;
+    color: white;
+    border-radius: 6px;
+    text-align: center;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+    white-space: nowrap;
+}
+
+.file-btn:hover {
+    background: #5a4ac7;
+}
+
+#image-preview {
+    display: block;
+}
+
 
 .post h3 { 
     margin-top: 0; 
@@ -211,6 +266,7 @@ textarea {
 }
 
 .modal .post {
+    flex-direction: column;
     position: relative;
     background: #f9fafb;
     padding: 12px 20px 12px 15px; 
@@ -294,5 +350,31 @@ textarea {
     main {
         padding: 15px;
         gap: 20px;
+    }
+    .post { 
+        flex-direction: column; 
+    }
+    .post-image { 
+        max-width: 100%; 
+        max-height: 200px;
+        margin-bottom: 10px;
+    }
+    .file-label {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+
+    .file-btn {
+        margin: 0 auto;
+    }
+    .form-actions {
+        flex-direction: column;
+        align-items: center;
+    }
+    .form-actions .btn {
+        flex: none; 
+        width: auto;
+        margin-bottom: 10px;
     }
 }
