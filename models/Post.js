@@ -28,6 +28,10 @@ module.exports = (sequelize, DataTypes) => {
     ip: { 
       type: DataTypes.STRING,
       allowNull: true 
+    },
+    image: {               
+      type: DataTypes.STRING,
+      allowNull: true      
     }
   }, {
     sequelize,
