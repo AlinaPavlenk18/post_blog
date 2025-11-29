@@ -34,7 +34,7 @@ exports.getOne = async (req, res) => {
 // Create a new post
 exports.create = async (req, res) => {
   try {
-    const { title, description, author, ip } = req.body;
+    const { title, description, author, ip } = req.body || {};
 
     if (!title || !description || !author || !ip) {
       return res.status(400).json({ error: 'All fields are required' });
@@ -54,7 +54,7 @@ exports.update = async (req, res) => {
     const post = await Post.findByPk(req.params.id);
     if (!post) return res.status(404).json({ error: 'Post not found' });
 
-    const { title, description, author } = req.body;
+    const { title, description, author } = req.body || {};
     const image = req.file ? `/uploads/${req.file.filename}` : post.image; 
     await post.update({ title, description, author, image });
     res.json(post);
@@ -70,12 +70,14 @@ exports.remove = async (req, res) => {
     if (!post) return res.status(404).json({ error: 'Post not found' });
 
     if (post.image) {
-      const imagePath = path.join(
-        process.env.RENDER ? '/tmp' : path.join(__dirname, '../'),
-        post.image
-      );
-      if (fs.existsSync(imagePath)) {
-        fs.unlinkSync(imagePath);
+      try {
+        const imagePath = process.env.RENDER
+          ? path.join('/tmp', post.image.replace('/uploads', 'uploads'))
+          : path.join(__dirname, '../', post.image);
+
+        if (fs.existsSync(imagePath)) fs.unlinkSync(imagePath);
+      } catch (err) {
+        console.warn('Не вдалося видалити файл:', err.message);
       }
     }
 

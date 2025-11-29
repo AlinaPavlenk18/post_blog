@@ -29,13 +29,13 @@ const upload = multer({ storage });
 router.get('/', postController.getAll);
 
 // create new post
-router.post('/', postController.create); 
+router.post('/', upload.single('image'), postController.create);
 
 // get post by ID
 router.get('/:id', postController.getOne);
 
 // update post
-router.put('/:id', postController.update);
+router.put('/:id', upload.single('image'), postController.update);
 
 // delete post
 router.delete('/:id', postController.remove);
