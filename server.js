@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const path = require('path');
 const cors = require('cors');
+const fs = require('fs');
 const db = require('./models'); 
 const postRoutes = require('./routes/postRoutes');
 
@@ -11,7 +12,15 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+const uploadDir = process.env.RENDER
+  ? '/tmp/uploads'                
+  : path.join(__dirname, 'uploads');  
+
+if (!fs.existsSync(uploadDir)) {
+  fs.mkdirSync(uploadDir, { recursive: true });
+}
+
+app.use('/uploads', express.static(uploadDir));
 
 app.use('/api/posts', postRoutes);
 
